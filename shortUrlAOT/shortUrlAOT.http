@@ -1,0 +1,11 @@
+@shortUrlAOT_HostAddress = http://localhost:5055
+
+GET {{shortUrlAOT_HostAddress}}/todos/
+Accept: application/json
+
+###
+
+GET {{shortUrlAOT_HostAddress}}/todos/1
+Accept: application/json
+
+###
