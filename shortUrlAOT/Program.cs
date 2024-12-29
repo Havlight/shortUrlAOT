@@ -12,8 +12,19 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 builder.Services.AddSingleton<Db>();
 builder.Services.AddHostedService<DbBackgroundService>();
 builder.Services.AddScoped<IUserService, UserSerivce>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin() // 允許所有來源
+                .AllowAnyHeader() // 允許任何標頭
+                .AllowAnyMethod(); // 允許任何方法（GET, POST, DELETE等）
+        });
+});
 
 var app = builder.Build();
+app.UseCors("AllowAll");
 
 app.MapGet("/", () =>
 {
